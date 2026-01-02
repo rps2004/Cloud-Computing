@@ -1,0 +1,10 @@
+CONTAINER ID   NAME                                      CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O    PIDS
+92a2a9d80e0b   reverse-svc.4.q411ex8p71n6mjbgncu362aa3   37.66%    20.76MiB / 7.41GiB   0.27%     5.73MB / 4.48MB   0B / 127kB   2
+CONTAINER ID   NAME                                      CPU %     MEM USAGE / LIMIT    MEM %     NET I/O          BLOCK I/O    PIDS
+76f73ada68ff   reverse-svc.5.1mkoebgftt6dthw46pg93s07a   35.51%    20.24MiB / 7.41GiB   0.27%     5.89MB / 4.6MB   0B / 127kB   2
+CONTAINER ID   NAME                                      CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O    PIDS
+8e3f83c0993a   reverse-svc.1.wktq0yguzmlie1im5yfzrevbn   36.14%    20.77MiB / 7.41GiB   0.27%     19.6MB / 15.3MB   0B / 127kB   2
+CONTAINER ID   NAME                                      CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O    PIDS
+9bc344c9c2b4   reverse-svc.3.js475nb4r74z8pfygc8ifg4bi   41.92%    20.48MiB / 7.41GiB   0.27%     19.7MB / 15.4MB   0B / 127kB   2
+CONTAINER ID   NAME                                      CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O    PIDS
+f6104833af2a   reverse-svc.2.p0abj6kfzxigx1t8hvua0663o   38.12%    20.77MiB / 7.41GiB   0.27%     19.8MB / 15.5MB   0B / 127kB   2

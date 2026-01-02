@@ -1,0 +1,4 @@
+CONTAINER ID   NAME         CPU %     MEM USAGE / LIMIT    MEM %     NET I/O         BLOCK I/O    PIDS
+0f5e24fe5ec6   lucid_benz   151.53%   25.12MiB / 7.41GiB   0.33%     27MB / 22.6MB   0B / 127kB   5
+CONTAINER ID   NAME         CPU %     MEM USAGE / LIMIT   MEM %     NET I/O         BLOCK I/O    PIDS
+0f5e24fe5ec6   lucid_benz   151.93%   25.4MiB / 7.41GiB   0.33%     33.8MB / 28MB   0B / 127kB   10

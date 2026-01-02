@@ -1,0 +1,21 @@
+[INFO] Starting client. target=swarm, count=10000, rate=500.0/s, concurrency=150
+
+[INFO] Running 10-string test for swarm
+[INFO] Saved plot: EE22B171_swarm_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.007435s
+
+[INFO] Running 10000-request test for swarm (rate=500.0/s, conc=150)
+[INFO] Saved plot: EE22B171_swarm_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  10000
+  Failures: 0
+  Avg latency: 0.012020s
+  Elapsed wall time: 21.261s
+  Throughput: 470.34 req/s
+
+[INFO] Total wall-clock time: 21.724s

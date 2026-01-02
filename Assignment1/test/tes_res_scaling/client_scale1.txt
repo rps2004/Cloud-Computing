@@ -1,0 +1,21 @@
+[INFO] Starting client. target=k8s, count=10000, rate=50.0/s, concurrency=75
+
+[INFO] Running 10-string test for k8s
+[INFO] Saved plot: EE22B171_k8s_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.091250s
+
+[INFO] Running 10000-request test for k8s (rate=50.0/s, conc=75)
+[INFO] Saved plot: EE22B171_k8s_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  10000
+  Failures: 0
+  Avg latency: 0.051207s
+  Elapsed wall time: 250.116s
+  Throughput: 39.98 req/s
+
+[INFO] Total wall-clock time: 251.571s

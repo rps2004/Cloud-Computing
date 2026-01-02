@@ -1,0 +1,84 @@
+[INFO] Starting client. target=k8s, count=10000, rate=500.0/s, concurrency=150
+
+[INFO] Running 10-string test for k8s
+[INFO] Saved plot: EE22B171_k8s_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.097842s
+
+[INFO] Running 10000-request test for k8s (rate=500.0/s, conc=150)
+[INFO] Saved plot: EE22B171_k8s_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  5583
+  Failures: 4417
+  Avg latency: 0.009863s
+  Elapsed wall time: 25.397s
+  Throughput: 219.83 req/s
+
+[INFO] Total wall-clock time: 26.741s
+[INFO] Starting client. target=k8s, count=10000, rate=50.0/s, concurrency=50
+
+[INFO] Running 10-string test for k8s
+[INFO] Saved plot: EE22B171_k8s_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.092101s
+
+[INFO] Running 10000-request test for k8s (rate=50.0/s, conc=50)
+[INFO] Saved plot: EE22B171_k8s_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  10000
+  Failures: 0
+  Avg latency: 0.057286s
+  Elapsed wall time: 275.010s
+  Throughput: 36.36 req/s
+
+[INFO] Total wall-clock time: 276.535s
+[INFO] Starting client. target=k8s, count=10000, rate=500.0/s, concurrency=150
+
+[INFO] Running 10-string test for k8s
+[INFO] Saved plot: EE22B171_k8s_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.071267s
+
+[INFO] Running 10000-request test for k8s (rate=500.0/s, conc=150)
+[INFO] Saved plot: EE22B171_k8s_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  10000
+  Failures: 0
+  Avg latency: 0.313619s
+  Elapsed wall time: 22.121s
+  Throughput: 452.07 req/s
+
+[INFO] Total wall-clock time: 23.270s
+[INFO] Starting client. target=k8s, count=10000, rate=250.0/s, concurrency=150
+
+[INFO] Running 10-string test for k8s
+[INFO] Saved plot: EE22B171_k8s_10_plot.png
+[INFO] 10-string test summary:
+  Requests: 10
+  Success:  10
+  Failures: 0
+  Avg latency: 0.085804s
+
+[INFO] Running 10000-request test for k8s (rate=250.0/s, conc=150)
+[INFO] Saved plot: EE22B171_k8s_10000_plot.png
+[INFO] 10000-request test summary:
+  Requests: 10000
+  Success:  10000
+  Failures: 0
+  Avg latency: 0.012315s
+  Elapsed wall time: 20.133s
+  Throughput: 496.71 req/s
+
+[INFO] Total wall-clock time: 21.400s

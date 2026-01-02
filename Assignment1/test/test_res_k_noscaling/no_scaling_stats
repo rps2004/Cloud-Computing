@@ -1,0 +1,15 @@
+NAME                              CPU(cores)   MEMORY(bytes)   
+reverse-deploy-7c4f77b6df-hdd5h   162m         22Mi
+reverse-deploy-7c4f77b6df-nmplb   164m         23Mi
+reverse-deploy-7c4f77b6df-wbpw7   163m         23Mi
+
+NAME                              CPU(cores)   MEMORY(bytes)   
+reverse-deploy-7c4f77b6df-hdd5h   187m          22Mi
+reverse-deploy-7c4f77b6df-nmplb   188m          23Mi
+reverse-deploy-7c4f77b6df-wbpw7   188m          23Mi
+
+
+NAME                              CPU(cores)   MEMORY(bytes)   
+reverse-deploy-7c4f77b6df-hdd5h   191m         22Mi
+reverse-deploy-7c4f77b6df-nmplb   179m         22Mi
+reverse-deploy-7c4f77b6df-wbpw7   189m         23Mi
