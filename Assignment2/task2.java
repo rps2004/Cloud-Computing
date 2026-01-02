@@ -1,0 +1,122 @@
+package org.myorg.taxi;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Map.Entry;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+public class TopRoutes2012Expensive {
+
+    // Mapper: emit (route, fare) for 2012
+    public static class RouteFareMapper extends Mapper<LongWritable, Text, Text, DoubleWritable> {
+        private final static DoubleWritable fareWritable = new DoubleWritable();
+        private Text routeKey = new Text();
+        private Pattern datePattern = Pattern.compile("(\\d{4})-(\\d{2})-(\\d{2})");
+
+        @Override
+        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+            String line = value.toString();
+            if (line == null || line.trim().isEmpty()) return;
+
+            String low = line.toLowerCase();
+            if (low.contains("pickup_datetime") && low.contains("pickup_longitude")) return;
+
+            String[] tokens = line.split(",");
+            if (tokens.length < 8) return; // ensure fare index exists
+
+            String pickupDatetime = tokens[2].trim();
+            String pickupLon = tokens[3].trim();
+            String pickupLat = tokens[4].trim();
+            String dropLon = tokens[5].trim();
+            String dropLat = tokens[6].trim();
+            String fareStr = tokens[7].trim();
+
+            Matcher m = datePattern.matcher(pickupDatetime);
+            if (!m.find()) return;
+            String year = m.group(1);
+            if (!"2012".equals(year)) return;
+
+            double fare;
+            try {
+                fare = Double.parseDouble(fareStr);
+            } catch (NumberFormatException nfe) {
+                return;
+            }
+
+            String route = pickupLon + "," + pickupLat + "->" + dropLon + "," + dropLat;
+            routeKey.set(route);
+            fareWritable.set(fare);
+            context.write(routeKey, fareWritable);
+        }
+    }
+
+    // Reducer: compute average fare per route and keep top 5 by average fare
+    public static class Top5AvgFareReducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
+        private PriorityQueue<Entry<String, Double>> pq = new PriorityQueue<>(5,
+            Comparator.comparingDouble(Entry::getValue));
+
+        @Override
+        protected void reduce(Text key, Iterable<DoubleWritable> values, Context context)
+                throws IOException, InterruptedException {
+            double sum = 0.0;
+            long count = 0;
+            for (DoubleWritable v : values) {
+                sum += v.get();
+                count++;
+            }
+            if (count == 0) return;
+            double avg = sum / count;
+            pq.add(new AbstractMap.SimpleEntry<>(key.toString(), avg));
+            if (pq.size() > 5) pq.poll(); // keep only top 5 (smallest removed)
+        }
+
+        @Override
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            List<Entry<String, Double>> topList = new ArrayList<>();
+            while (!pq.isEmpty()) topList.add(pq.poll());
+            Collections.reverse(topList);
+            for (Entry<String, Double> e : topList) {
+                context.write(new Text(e.getKey()), new DoubleWritable(e.getValue()));
+            }
+        }
+    }
+
+    // Driver
+    public static void main(String[] args) throws Exception {
+        if (args.length < 2) {
+            System.err.println("Usage: TopRoutes2012Expensive <inputCsv> <finalOutput>");
+            System.exit(2);
+        }
+
+        String input = args[0];
+        String finalOut = args[1];
+        Configuration conf = new Configuration();
+
+        Job job = Job.getInstance(conf, "Top 5 Most Expensive Routes 2012 - Single Job");
+        job.setJarByClass(TopRoutes2012Expensive.class);
+
+        job.setMapperClass(RouteFareMapper.class);
+        job.setReducerClass(Top5AvgFareReducer.class);
+
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(DoubleWritable.class);
+        job.setOutputKeyClass(Text.class);
+        job.setOutputValueClass(DoubleWritable.class);
+
+        FileInputFormat.setInputPaths(job, new Path(input));
+        FileOutputFormat.setOutputPath(job, new Path(finalOut));
+
+        // Use single reducer to get global top 5
+        job.setNumReduceTasks(1);
+
+        System.exit(job.waitForCompletion(true) ? 0 : 1);
+    }
+}
